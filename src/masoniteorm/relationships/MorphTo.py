@@ -1,4 +1,5 @@
 from .BaseRelationship import BaseRelationship
+from .RegisterRelations import RegisterRelations
 
 
 class MorphTo(BaseRelationship):
@@ -63,10 +64,10 @@ class MorphTo(BaseRelationship):
         Returns:
             dict -- A dictionary of data which will be hydrated.
         """
-        model = self.morph_map().get(instance.__attributes__[self.morph_key])
+        model = (
+            RegisterRelations().morph_map().get(instance.__attributes__[self.morph_key])
+        )
         record = instance.__attributes__[self.morph_id]
-
-        # return
 
         return model.where(model.get_primary_key(), record).first()
 

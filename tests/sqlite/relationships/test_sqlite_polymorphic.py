@@ -2,7 +2,12 @@ import os
 import unittest
 
 from src.masoniteorm.models import Model
-from src.masoniteorm.relationships import belongs_to, has_many, morph_to
+from src.masoniteorm.relationships import (
+    belongs_to,
+    has_many,
+    morph_to,
+    RegisterRelations,
+)
 
 
 class Profile(Model):
@@ -40,7 +45,7 @@ class User(Model):
     _eager_loads = ()
 
 
-morph_to.set_morph_map({"user": User, "article": Articles})
+RegisterRelations.set_morph_map({"user": User, "article": Articles})
 
 
 class TestRelationships(unittest.TestCase):
