@@ -459,9 +459,7 @@ class Model(TimeStampsMixin, ObservesEvents, metaclass=ModelMeta):
 
         # prevent using both exclude and include at the same time
         if exclude is not None and include is not None:
-            raise AttributeError(
-                "Can not define both includes and exclude values."
-            )
+            raise AttributeError("Can not define both includes and exclude values.")
 
         if exclude is not None:
             self.__hidden__ = exclude
